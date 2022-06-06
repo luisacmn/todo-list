@@ -1,0 +1,13 @@
+1. Mapear o valor do input e guardar em uma variável de string (usar State)
+2. Esse valor, o id, e outras informações, guardar em um array como um item. 
+
+Obs.: Esses estados, com variáveis e funções, serão utilizados multuamente pelos componentes filhos. 
+Logo, deve estar dentro do componete pai, e os valores passados como props. 
+
+3. Para cada item, criar um componente Todo (Com o texto, check e delete) 
+4. Cada item da lista tem que possuir um key=id, para que na hora que for atualizar, 
+como remover ou editar, saber qual item da lista manipular. 
+5. Implementar a função do delete 
+6. Implementar a função check 
+7. Filtrar os items : todos, completos, incompletos. 
+8. UseEffect para atualizar um item toda vez que for modificado. 
