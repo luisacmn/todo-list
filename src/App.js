@@ -17,7 +17,7 @@ const App = () => {
   
   //useState                                               //Variáveis e States que serão utilizados pelos componentes filhos
   const [inputText, setInputText] = useState("")           //Mapear o texto digitado pelo usuário no input.
-  const [todos, setTodos] = useState(getDatafromLS())                   //Guardar o texto mapeado em uma lista (array) de objetos com o texto, id e se está completo ou não
+  const [todos, setTodos] = useState(getDatafromLS())      //Guardar o texto mapeado em uma lista (array) de objetos com o texto, id e se está completo ou não
   const [status, setStatus] = useState("all")              //Salvar status de acordo com o que foi selecionado
   const [filteredTodos, setFilteredTodos] =useState([])    //Filtrar os itens de acordo com o status selecionado
   
