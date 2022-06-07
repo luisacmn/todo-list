@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from "./components/Form"
 import TodoList from './components/TodoList';
 
-const App = () => {                                        //Variáveis/States que serão utilizados pelos componentes filhos
-  //useState 
+//Get data from localStorage: Run when apps start 
+const getDatafromLS = () =>{
+  const todoLocal = localStorage.getItem("todos");
+  if (todoLocal) {
+    return JSON.parse(todoLocal)
+  } else {
+    return []
+  }
+}
+
+const App = () => {              
+  
+  //useState                                               //Variáveis e States que serão utilizados pelos componentes filhos
   const [inputText, setInputText] = useState("")           //Mapear o texto digitado pelo usuário no input.
-  const [todos, setTodos] = useState([])                   //Guardar o texto mapeado em uma lista (array) de objetos com o texto, id e se está completo ou não
+  const [todos, setTodos] = useState(getDatafromLS())                   //Guardar o texto mapeado em uma lista (array) de objetos com o texto, id e se está completo ou não
   const [status, setStatus] = useState("all")              //Salvar status de acordo com o que foi selecionado
   const [filteredTodos, setFilteredTodos] =useState([])    //Filtrar os itens de acordo com o status selecionado
   
-  //Get from LocalStorage: Run when apps start 
-  useEffect(() => {
-    let todoLocal = JSON.parse(localStorage.getItem("todos")) //PEGAR informação (de nome "todos") do localStorage
-    if(todoLocal){
-      setTodos(todoLocal)                                   
-    }
-  },[])
   
-  //Save in LocalStorage: Update while the app is running 
+  //Save to localStorage 
   useEffect(() => {                                         //filtrar os items de"todos" de acordo com seu status.
     switch(status) {
       case "completed":
@@ -30,10 +34,9 @@ const App = () => {                                        //Variáveis/States q
       default:
         setFilteredTodos(todos)
         break;
-    } 
-
-    localStorage.setItem("todos", JSON.stringify(todos))    //SALVAR informação (array "todos") no localStorage com o nome "todos"
-  },[todos, status])                                        //toda vez que todos e status se atualizam, roda essa função; 
+    }
+     localStorage.setItem("todos", JSON.stringify(todos))    //SALVAR informação (array "todos") no localStorage com o nome "todos"
+  },[todos, status]);                                        //toda vez que todos e status se atualizam, roda essa função; 
   
 
   return (
